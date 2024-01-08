@@ -61,27 +61,43 @@ A Technical Report》）
 ●话中多轮对话：主要是多轮对话中的话术推荐场景，通过用户与客服对话交流过程中向坐席人员提供针对性的回复话术。
 3）话后
 话后服务是指客户与客服结束对话之后提供的各类NLP服务能力，用于帮助后台运营人员分析话务数据和追踪投诉问题进展，确保客户问题可以得到满意解决。智能话务分析是通过对话务来源、关键信息、投诉倾向性、携号转网倾向性等常见问题的分析，探明用户集中需求，以期后续改进减少话务量。智能投诉分析重点是对客服投诉工单中的投诉热点以及投诉类型分析，提升用户满意度。
+
 \subsection{Pre-call scenarios}
+
 The capabilities required for the pre-call scenario are mainly to provide proactive service to the user before the customer service agent contacts the user. It helps to solve simple common problems and reduces the volume of agent access calls.
+
 \begin{itemize}
+   
     \item NLP capability: Mainly by analyzing the previous call data to see if there are potential business opportunities that can be tapped, such as potential business opportunity mining tasks.
+   
     \item Knowledge QA:  Users will first access the digital person when some questions about broadband, traffic, etc. The digital person can answer some simple inquiries about the phone bill, traffic, etc., to reduce the pressure of the agent.
+   
     \item Multi-round Dialog: Before users access the real agent, they will first access the voice navigation multi-round dialog system to answer some simple questions from users.
+
 \end{itemize}
+
 \subsection{In-call scenarios}
+
 In-call services mainly refer to the ability to provide various types of services when users have actual conversations with customer service. In-session services are used to help back-office agents improve service efficiency and reduce the processing time of each call.
 
 \begin{itemize}
+   
     \item NLP capability: including 2 categories, the first is the intent recognition task, mainly to identify the user's intent on various users and customer service dialogue text, such as business processing to determine whether they want to apply for 'broadband class' business or 'points class' business. The second category is information extraction tasks, mainly intelligent form filling, extracting key information in the conversation and filling in fixed forms to reduce manual operations.
+   
     \item Knowledge Q\&A capability: includes knowledge quizzes and capability calls. Knowledge quizzes is to respond to the user's question by referring to the relevant knowledge base document to give the user an answer. Capability calls refers to the user asking for information such as traffic, package remaining, etc., and responding by invoking multiple interface capabilities in the backend.
+   
     \item Multi-round Dialog capability: the main purpose is to generate replies, through the user and customer service dialog process to provide targeted reference.
+
 \end{itemize}
 
+
 \subsection{Post-call scenarios}
+
 Post-call service refers to all kinds of NLP service capabilities provided after the users have finished the conversation with the customer service. It is used to help back-office operators analyze call data and track the progress of complaint issues to ensure that customer issues can be resolved satisfactorily. Intelligent call analysis is used to analyze common problems such as call sources, key information, complaint tendency, and tendency to switch to a new network, etc., so as to find out the centralized needs of users, with a view to making subsequent improvements to reduce the call volume. Intelligent complaint analysis focuses on the analysis of complaint hotspots and complaint types in customer service complaint work orders to improve user satisfaction.
 ## 客服领域任务数据集构造
 为了评估以上这些能力和对应的任务，我们整合构建了运营商客服测评数据和微调数据集，基于开源（open-source data）和真实业务仿真数据（private data）。测评数据和微调数据集具有类似的流程，如图2所示，都包括数据脱敏、数据清洗、答案/标签构造以及人工核对。第一数据脱敏：由于客服数据中存在多种用户的手机号、身份证号码等敏感信息，为了确保用户隐私安全，我们数值类文本通过正则表达式识别，并脱敏处理；针对字符型文本使qwen14B-chat识别例如姓名、地址等信息进行脱敏处理。第二数据清洗：对脱敏后文本去除下划线、空格等无实际意义的字符等。第三答案/标签数据构建：包括三种方法，1）专家标注，2）基于关键词筛选，3）通过场景描述让大模型仿真生成符合要求的数据。第四：人工核对，将所有的数据经过3个业务专家和3名NLP技术专家核对，确保数据的可靠性。
 下面分别介绍运营商客服测评数据和微调数据集。
+
 	To evaluate the above capabilities and corresponding tasks, we integrated and constructed operator customer service evaluation datasets and fine-tuning datasets, based on open source data and real business simulation data (private data). The evaluation datasets and fine-tuning datasets have a similar process, as shown in Figure 2, which includes data desensitization, data cleaning, answer/label construction, and manual verification. First, data desensitization: because there are sensitive information such as phone numbers and ID card numbers of multiple users in customer service data, in order to ensure user privacy and security, we identify and desensitize numerical texts through regular expressions. We utilize qwen-14B-chat for text recognition, such as name, address, and other information. Second, data cleaning: remove meaningless characters such as underline and spaces from the desensitized text. Third, answer/label construction: includes three methods: 1) expert annotation, 2) keyword filtering, 3) using scenario description to generate data that meets the requirements through simulation of the large model. Fourth, manual verification: all these datasets are verified by three business experts and three NLP technical experts to ensure the reliability of the data.
 The following introduces the operator customer service evaluation datasets and fine-tuning datasets.
 
@@ -89,34 +105,16 @@ The following introduces the operator customer service evaluation datasets and f
 图2数据构造过程示例
 ### 1.测评数据集-许银
 为了测评客服领域大模型的能力，我们整合开源和私域数据构建了运营商客服评估数据集，包括文本分类、信息抽取和多轮对话任务，共21个数据集。其中开源数据包括【CSDS】【MUSIED】，CSDS数据集由于包含多轮对话、意图以及摘要信息，又被拆分为多个任务数据集，包括CSDS-MRD、CSDS-IR和CSDS-AE。MUSIED数据集包含用户评论以及意图信息，因此我们将其构建为意图识别数据集MUSIED-IR。此外我们也通过图2的方法构造了私域数据集。具体统计信息如表XX所示。
+
 To evaluate the capability of LLMs in the customer service domain, we integrated open-source and private data to construct  datasets for evaluating operator customer service, including text classification, information extraction, and multi-round dialogue tasks, totaling 21 datasets. The open-source data includes CSDS[X] and MUSIED[X]. The CSDS dataset, which contains multiple rounds of dialogue, intent, and summary information, has been split into multiple task datasets, including CSDS-MRD, CSDS-IR, and CSDS-AE. The MUSIED dataset contains user comments and intent information, so we construct it as the intent recognition dataset MUSIED-IR. In addition, we also constructed a private dataset using the method shown in Figure 2. The specific statistical information is shown in Table XX.
 
 ![231cfea9224ea915887ef43401fd8e3](https://github.com/zsjslab/KDGC-Knowledge-Computing-Laboratory/assets/155947032/5dff7458-cc18-4273-91a8-4fb60235197a)
 
-Scenes	Dataset	Task	Major Task Type	Minor Task Type	Size	Metrics
-Pre-call	PBO	Potential Business Opportunities	NLP task	Text classification	100	accuracy，instruction_follow
-	DHMRD	Digital Human Multi-Round Dialogue	Multi-Round Q&A task	Multi-Round Q&A 	20	Uni, GT, ELO
-In-call	CTIR	Conversation Text Intent Recognition	NLP task	Text classification	225	accuracy，instruction_follow
-	PIRC	Package Intent Recognition of  Consumption	NLP task	Text classification	1013	accuracy，instruction_follow
-	PIR16	Package Intent Recognition_16 classes	NLP task	Text classification	277	accuracy，instruction_follow
-	PIR3	Package Intent Recognition_3 classes	NLP task	Text classification	310	accuracy，instruction_follow
-	IAKQA	Intelligent Assistant-Knowledge Q&A	Knowledge Q&A task	Knowledge Q&A	54	RougeL
-	IACC	Intelligent Assistant-Capability Call	Knowledge Q&A task	Capability call	20	RougeL
-	IFF	Intelligent Form Filling for Installation and Maintenance	NLP task	Information extraction	100	f1_score
-	CSDS-MRD	CSDS-Multi-Round Dialogue	Multi-Round Q&A task	Multi-Round Q&A 	100	Uni, GT, ELO
-	CSDS-IR	CSDS-Intent Recognition	NLP task	Text classification	1000	accuracy，instruction_follow
-	MUSIED-IR	MUSIED-Intent Recognition	NLP task	Text classification	1000	accuracy，instruction_follow
-Post-call	CTUD	Call Traceability of User Demands	NLP task	Text classification	320	accuracy，instruction_follow
-	CTT	Call Traceability of Triggers	NLP task	Text classification	160	accuracy，instruction_follow
-	CS	Call Summary	NLP task	Information extraction	91	RougeL
-	COC-CR	Complaint Order Classification for Complaint Reason	NLP task	Text classification	1000	accuracy，instruction_follow
-	COC	Complaint Order Classification	NLP task	Text classification	1000	accuracy，instruction_follow
-	CHD	Complaint Hotspot Discovery	NLP task	Information extraction	100	f1_score
-	CTA	Complaint Tendency Analysis	NLP task	Text classification	100	accuracy，instruction_follow
-	ATNT	Analysis on Tendency of Number Portability and Network Transfer	NLP task	Text classification	100	accuracy，instruction_follow
-	CSDS-AE	CSDS-Abstract Extraction	NLP task	Information extraction	1000	RougeL
 
 There are various text-based tasks in the field of operator customer service. We divide these tasks into three categories, NLP task, Multi-round dialogue task and knowledge Q&A task. And we summarize the details of datasets for each task in Appendix B.
+
 NLP Datasets 	We construct 17 NLP datasets. These datasets can be recognized by the following 2 tasks: 1) Text Classification, including 13 datasets, such as PBO and CTIR. 2) Information Extraction, including IFF, CS, CHD and CSDS-AE. 	
+
 Multi-round Dialogue Datasets	To evaluate the generation ability in multiple-round dialogues of LLMs，we construct 2 multi-round dialogue datasets, DHMRD and CSDS-MDR, contain the conversations between users and agents in real-life scenarios.
+
 Knowledge Q&A Dataset	We build 2 datasets to evaluate the question answering ability of LLMs. IAKQA requires answering the question according to the given reference, and IACC is for capability call.
