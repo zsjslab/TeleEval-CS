@@ -47,8 +47,7 @@ LLMs的成功很大程度上取决于旨在用于评估其在特定领域的熟�
 
 ![7313c6ebc28b4b27d371fa3e6f79478](https://github.com/zsjslab/KDGC-Knowledge-Computing-Laboratory/assets/155947032/2064eda0-6214-476c-99e3-9b101d037036)
 
-（2）分能力介绍（参考论文《LAiW: A Chinese Legal Large Language Models Benchmark
-A Technical Report》）
+（2）分能力介绍（参考论文《LAiW: A Chinese Legal Large Language Models Benchmark A Technical Report》）
 1）话前
 话前的各类能力主要是在客服人员联系用户之前给用户主动提供服务，帮助解决一些简单常见问题，减少坐席接入话务量。
 ●话前NLP能力：主要是通过对之前的话务数据分析是否具备潜在商机可以挖掘。
@@ -102,6 +101,7 @@ Post-call service refers to all kinds of NLP service capabilities provided after
 The following introduces the operator customer service evaluation datasets and fine-tuning datasets.
 
 ![28f67d2a2ccb6559938218f23d90127](https://github.com/zsjslab/KDGC-Knowledge-Computing-Laboratory/assets/155947032/51102477-dc55-40b5-a8ff-7f5e0c915613)
+
 图2数据构造过程示例
 ### 1.测评数据集-许银
 为了测评客服领域大模型的能力，我们整合开源和私域数据构建了运营商客服评估数据集，包括文本分类、信息抽取和多轮对话任务，共21个数据集。其中开源数据包括【CSDS】【MUSIED】，CSDS数据集由于包含多轮对话、意图以及摘要信息，又被拆分为多个任务数据集，包括CSDS-MRD、CSDS-IR和CSDS-AE。MUSIED数据集包含用户评论以及意图信息，因此我们将其构建为意图识别数据集MUSIED-IR。此外我们也通过图2的方法构造了私域数据集。具体统计信息如表XX所示。
