@@ -1,14 +1,14 @@
-# KDGC-Knowledge-Computing-Laboratory
-## 客服领域大模型测评论文（v1.0版本）
+ KDGC-Knowledge-Computing-Laboratory
+# 客服领域大模型测评论文（v1.0版本）
 题目：XXX：A Chinese Operator Customer Service Large Language Models Benchmark 
-### 摘要
+__摘要__
 大型语言模型 (LLM) 的最新进展在各种自然语言处理 (NLP) 任务中展现出广泛的前景。LLM 在特定领域的应用，例如运营商领域，越来越受到关注。但是【llm在运营商领域的问题】
 1.运营商领域测评基准缺乏，目前开源的大模型基本都是通用大模型，因此评测基准也都是在通用领域上的评测，缺乏对行业尤其是对运营商行业的效果探索。
 2.通用大模型没有注入运营商领域知识难以投入实际生产场景应用。
 为了能够评估在运营商客服领域多类特定场景任务上的效果，我们构建了【论文题目】。
 【我们的工作】在工作中，我们收集整理仿真了运营商领域【多少】类场景数据，包括客服话前、话中、话后三大类场景，并通过构造运营商领域微调数据集，将行业知识注入大模型，微调训练运营商NLP任务、运营商多轮对话、运营商检索问答3类任务大模型。
 【实验结果】为了评估这些任务，我们通过对【多少大模型】上测试zero shot，few shot以及微调表现。我们的benchmark is releasde at【链接】。
-### 引言（为什么选择测试这些大模型）
+## 项目背景（为什么选择测试这些大模型）
 （1）大模型发展迅速，引出运营商领域：
 随着ChatGPT和GPT4相继提出，大模型（比如chatGPT、LLaMA、GLM、 ERNIE BOt、Baichuan）在很多NLP任务上都取得了令人惊喜的效果和广泛的关注。而且由于这些大模型不需要标注数据，使用zero-shot/few-shot即可取得显著效果，因此更广泛的场景和行业（法律、医疗、金融、生物等）中大模型的效果如何都引起了大家积极的探索，运营商客服也不例外。
 
@@ -27,7 +27,10 @@
 1.本文推出的运营商客服领域测评体系是第一个可以用于综合评估不同大模型在运营商客服领域话前、话中、话后能力的基准，是促进运营商客服领域高质量发展的重要驱动力。
 2.我们梳理仿真21类任务【4000多条】测评数据集，以及【10多万条】微调数据，构建运营商客服NLP任务微调大模型、多轮对话大模型以及知识问答指令微调大模型。此外我们还专门针对运营商领域特定场景多级联标签分类任务构建多级联分类微调大模型。
 3.在【多少大模型上】测评了运营商客服领域大模型，为指导客服领域实际落地应用提供了重要的参考价值。
-## related work（加一下很多测评都有对话但是没有用运营商数据）-友志
+__任务结构评测图__
+
+![231cfea9224ea915887ef43401fd8e3](https://github.com/zsjslab/KDGC-Knowledge-Computing-Laboratory/assets/155947032/5dff7458-cc18-4273-91a8-4fb60235197a)
+
 ### 1. 运营商领域大模型
 先进大型语言模型（LLM）如ChatGPT系列（引用），在处理通用和专业领域的各种问题方面表现出了卓越的能力，许多研究人员开始尝试试复制 GPT 系列来开发 LLaMA（引用）、Bloom（引用）、GLM（引用）和 Qwen（引用）等开源基础模型。这些LLMs在各种自然语言处理 (NLP) 任务上表现出强大的性能，包括零样本和少样本学习场景。大模型的巨大潜能引发了各个领域的广泛兴趣和大量研究，例如医学（引用）和金融 （引用）。与这些领域非常相似，运营商领域也面临着大模型可能带来的潜在影响。
 运营商领域拥有丰富的文本资源和应用场景，传统的NLP任务模型在运营商领域的应用存在一系列独特的挑战。首先，运营商领域知识错综复杂，充满了繁杂的术语和规则，导致专业知识的短缺（引用）。其次，标注数据的缺乏，加上注释过程成本高昂，阻碍了进展。第三，当前的自然语言处理模型的推理能力有限，难以完成长文本对话的理解和推理任务。最后，许多 NLP 模型的适应性较差，是为单任务性能而设计的，缺乏跨任务泛化能力（引用）。这些挑战强调了未来研究需要为不断发展的运营商领域开发更强大、适应性更强的 NLP 模型。
@@ -108,7 +111,7 @@ The following introduces the operator customer service evaluation datasets and f
 
 To evaluate the capability of LLMs in the customer service domain, we integrated open-source and private data to construct  datasets for evaluating operator customer service, including text classification, information extraction, and multi-round dialogue tasks, totaling 21 datasets. The open-source data includes CSDS[X] and MUSIED[X]. The CSDS dataset, which contains multiple rounds of dialogue, intent, and summary information, has been split into multiple task datasets, including CSDS-MRD, CSDS-IR, and CSDS-AE. The MUSIED dataset contains user comments and intent information, so we construct it as the intent recognition dataset MUSIED-IR. In addition, we also constructed a private dataset using the method shown in Figure 2. The specific statistical information is shown in Table XX.
 
-![231cfea9224ea915887ef43401fd8e3](https://github.com/zsjslab/KDGC-Knowledge-Computing-Laboratory/assets/155947032/5dff7458-cc18-4273-91a8-4fb60235197a)
+
 
 <table class="MsoNormalTable" border="0" cellspacing="0" style="border-collapse:collapse;width:405.8500pt;margin-left:1.1000pt;
 mso-table-layout-alt:fixed;border:none;mso-padding-alt:0.7500pt 0.7500pt 0.7500pt 0.7500pt ;"><tbody><tr style="height:12.8000pt;"><td width="57" valign="center" style="width:34.4500pt;padding:0.0000pt 4.3000pt 0.0000pt 4.3000pt ;border-left:1.0000pt solid rgb(203,205,209);
@@ -800,3 +803,19 @@ NLP Datasets 	We construct 17 NLP datasets. These datasets can be recognized by 
 Multi-round Dialogue Datasets	To evaluate the generation ability in multiple-round dialogues of LLMs，we construct 2 multi-round dialogue datasets, DHMRD and CSDS-MDR, contain the conversations between users and agents in real-life scenarios.
 
 Knowledge Q&A Dataset	We build 2 datasets to evaluate the question answering ability of LLMs. IAKQA requires answering the question according to the given reference, and IACC is for capability call.
+
+## 评测代码
+
+
+## 项目参与者
+
+
+## 声明
+本项目仅供学术研究使用，严禁用于商业。我们对使用该项目的任何问题，风险或不利后果不承担任何责任。
+
+## 致谢
+本项目在构建时，参考了以下开源项目，在此对相关项目和研究开发人员表示感谢。
+
+## 引用
+
+
