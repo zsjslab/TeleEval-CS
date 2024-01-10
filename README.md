@@ -1,7 +1,8 @@
  KDGC-Knowledge-Computing-Laboratory
 # 客服领域大模型测评论文（v1.0版本）
+
 题目：XXX：A Chinese Operator Customer Service Large Language Models Benchmark 
-__摘要__
+
 大型语言模型 (LLM) 的最新进展在各种自然语言处理 (NLP) 任务中展现出广泛的前景。LLM 在特定领域的应用，例如运营商领域，越来越受到关注。但是【llm在运营商领域的问题】
 1.运营商领域测评基准缺乏，目前开源的大模型基本都是通用大模型，因此评测基准也都是在通用领域上的评测，缺乏对行业尤其是对运营商行业的效果探索。
 2.通用大模型没有注入运营商领域知识难以投入实际生产场景应用。
