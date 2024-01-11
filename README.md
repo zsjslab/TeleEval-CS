@@ -2088,6 +2088,9 @@ Assistant: target2</s>
 
 ## 项目参与者
 
+本项目参与者有：李飞、王颜颜、黄友志、王世林、许银、梁军丽、陈政伊、刘闻睿、程磊、王昊然、朱诤、冯强中、宋骐、李向阳
+
+本项目参与单位有：科大国创云网科技有限公司、中国科学技术大学
 
 ## 声明
 本项目仅供学术研究使用，严禁用于商业。我们对使用该项目的任何问题，风险或不利后果不承担任何责任。
@@ -2095,6 +2098,19 @@ Assistant: target2</s>
 ## 致谢
 本项目在构建时，参考了以下开源项目，在此对相关项目和研究开发人员表示感谢。
 
+https://github.com/codefuse-ai/codefuse-devops-eval
+
+https://github.com/FudanDISC/DISC-FinLLM
+
+https://github.com/XZhang97666/AlpaCare/tree/master
+
+https://github.com/SteveKGYang/MentalLLaMA
+
+https://github.com/DUTIR-BioNLP/Taiyi-LLM/tree/main
+
+https://github.com/Dai-shen/LAiW/tree/main
+
 ## 引用
+
 
 
