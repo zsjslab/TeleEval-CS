@@ -2111,6 +2111,6 @@ https://github.com/DUTIR-BioNLP/Taiyi-LLM/tree/main
 https://github.com/Dai-shen/LAiW/tree/main
 
 ## 引用
-
+如果本项目对您的研究有所帮助，请引用本项目。
 
 
