@@ -1910,7 +1910,7 @@ NLP 数据集 我们构建了 17 个 NLP 数据集。这些数据集可按以下
 
 知识问答数据集 我们构建了两个数据集来评估 LLM 的问题解答能力。IAKQA 要求根据给定的参考回答问题，而 IACC 则是能力调用。
 
-__2.指令微调数据集构造__
+### 2.指令微调数据集构造
 
 为了进一步探究大模型在运营商领域的潜能，我们整合构建了运营商领域指令微调数据集，通过赋予LLM运营商领域文本理解能力、复杂任务处理能力（投诉工单分类）、知识问答能力、多轮对话能力来激发在运营商领域的应用效果。
 
@@ -2028,6 +2028,60 @@ border-top:none;mso-border-top-alt:0.5000pt solid rgb(203,205,209);border-bottom
 mso-border-bottom-alt:0.5000pt solid rgb(203,205,209);"><p class="MsoNormal"><span style="font-family:Calibri;mso-fareast-font-family:宋体;mso-bidi-font-family:'Times New Roman';
 font-size:10.5000pt;mso-font-kerning:1.0000pt;">91541</span><span style="font-family:Calibri;mso-fareast-font-family:宋体;mso-bidi-font-family:'Times New Roman';
 font-size:10.5000pt;mso-font-kerning:1.0000pt;"><o:p></o:p></span></p></td></tr></tbody></table>
+
+为了构建指令调整数据，需要为每个任务设计了指令模板。对于 QA 和对话任务，原始问题用作模型输入，答案用作输出。对于其他任务，分别为每个任务手动创建了大约 5~10 个指令模板。
+
+示例：
+
+![fce48a9c25eb31b84893aa8fd898631](https://github.com/zsjslab/A-Chinese-Operator-Customer-Service-Large-Language-Models-Benchmark/assets/155947032/4e0383a9-dfed-4375-b701-8f4fce1ab4aa)
+
+（1）NLP基本任务指令
+
+●意图识别
+
+instruction: 用户意图识别，所有意图如下：\n套餐推荐\n套餐内容\n套餐对比\n请从中选择合适的一个作下列文本的意图识别结果。
+
+input: [套餐名]包含哪些费用？
+
+output: 套餐内容
+
+●实体抽取
+
+instruction: 套餐实体抽取，请从下列文本中抽取“电话卡”、“套餐”、“流量”、“宽带”等与移动通信业务相关的实体名词。
+
+input:怎么开通爱奇艺芒果7天5g流量包？
+
+output:爱奇艺芒果7天5g流量包
+
+（2）投诉工单分类任务指令
+
+instruction: 级联标签分类，类别如下：\n投诉单→规则政策类→业务/优惠抵扣次序\n查询单→服务协调类→省自定→UIM卡问题\n......\n请从中选择合适的一个作为以下文本的级联标签。 
+
+input: 用户不提供具体位置,用户来电反映189****3928号码从6-15日开始在江西省市路号位置上网出现信号弱导致无法上网问题，以前使用可以正常，周围用户情况 不清楚，在其他地使用情况很慢 甚至无法使用，已建议用户自查终端设置重新关开机及做机卡交互测试，仍然无法使用，现要求核实解决，请局方协助处理。
+
+output:  投诉单→网络质量类→信号弱/不稳定
+
+（3）检索问答任务指令instruction: 根据参考材料回答下列问题。\n参考材料：1 系统定位\n云网服务编排中心统一编排入口，作为运行态，根据设计中心提供的编排包……
+
+input: 固网业务开通流程是什么？
+
+output: 业务开通流程：\n1、CRM受理业务，生成订单。\n2、编排系统接收订单后先送资源系统进行资源分配……
+
+（4）多轮对话任务指令
+
+数据示例：input: <User>:为什么我的宽带用不了？\n<Assistant>:是您这个本机来电号码上面的宽带吗？<User>:对是拉的wifi。 \n<Assistant>:跟您核对下地址,是在这个安边镇的陆庄村是吗？ <User>:对。\n<Assistant>:您稍等我帮您检查下。\n<Assistant>:先生不好意思让您久等了，因为市政这个停电，导致电信的设备基站断电了，然后我们工作人员在现场正在紧急抢修，这个很快就会给您修好了请您放心。<User>:噢行今天晚上可以修好吧。\n<Assistant>:我看下这个预计恢复时间在明天，明天早上10点多。 <User>:行谢谢啊。 \n<Assistant>:不客气您放心那您看还有其他需要我帮您的吗？ <User>:没有了。 \n<Assistant>:好的那麻烦您稍后请对本次服务做出评价。
+形式如下：
+
+User: input1
+
+Assistant: target1</s>
+
+User: input2
+
+Assistant: target2</s>
+...
+
+对于多轮对话微调，一般只会将Assistant回答部分的loss会用于反向传播更新权重，而User部分则作为条件，其loss则不会用于模型权重更新。鉴于多轮对话是由多次User和Assistant的对话构成，为了提高训练效率和对话session利用率，我们只计算Assistant部分的token loss进行权重更新。
 
 ## 评测代码
 
