@@ -1,11 +1,10 @@
-A Chinese Telecommunications Customer Service Evaluation Benchmark for Large Language Models
+TeleEval-CS：A Chinese Telecommunications Customer Service Evaluation Benchmark for Large Language Models
 # 中国运营商客服大语言模型测评基准
  
 - [English](./README.en)/- [中文](./README.md)
 
 ## 目录
 - [项目背景](#项目背景)
-- [任务测评结构图](#任务测评结构图)
 - [模型得分](#模型得分)
 - [客服领域评估任务基准](#客服领域评估任务基准)
 - [评分机制](#评分机制)
@@ -21,7 +20,7 @@ A Chinese Telecommunications Customer Service Evaluation Benchmark for Large Lan
 随着ChatGPT和GPT-4的成功推出，LLMs在各种NLP任务中取得了显著的成果，并引起了广泛关注。在法律、医疗、金融等领域，LLMs表现出了零次/少次方法的高效能，因此人们开始在这些领域积极探索LLMs的应用。在中国的客户服务领域，三大运营商都推出了针对特定垂直领域的大型模型。然而，目前这些模型主要集中在对话能力的评估上，并缺乏对整个客户服务过程的全面系统评估。客户服务领域的任务和场景具有独特性，难以通过现有的LLMs和评估基准进行合理评估。为此，本文提出了一套全面的运营商客户服务测量系统，并对不同类型的LLMs在实际场景中的性能进行了评估。这项工作对于推动运营商客户服务领域的发展具有重要意义。
 
 
-## 任务结构评测图
+__任务结构评测图__
 
 ![231cfea9224ea915887ef43401fd8e3](https://github.com/zsjslab/KDGC-Knowledge-Computing-Laboratory/assets/155947032/45c26f70-c28b-482e-9ca6-105ce8b74075)
 
@@ -1191,7 +1190,7 @@ __1. 运营商领域大模型__
 __2. 领域大模型评测__
 LLMs的成功取决于针对特定领域的基准数据集。目前传统的NLP评测基准已经不适合评估表现出强大能力的大型语言模型，新的基准如AGIEval、CEval等模拟人类考试的评测基准被提出用来评估LLM的更广泛知识和高级能力。然而，缺乏运营商领域真实场景任务数据的基准测试，需要开发一个运营商领域大模型评估套件。
 
-## 客服领域评估任务基准（benchmark construction）
+## 客服领域评估任务基准
 
 我们致力于从运营商客服领域专家和人工智能专家的角度，探索大型语言模型在运营商客服领域的知识情况，并构建一个客服多场景多任务测试体系，以评估大模型在运营商客服领域的能力。我们希望通过这个测试体系，了解大模型在真实运营商场景中的表现、优缺点以及多任务应用的能力。同时，我们还将研究不同的提示和微调数据集对客服领域应用的影响，并构建相应的微调多任务数据集。
 
