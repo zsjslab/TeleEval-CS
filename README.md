@@ -1,5 +1,5 @@
 TeleEval-CS：A Chinese Telecommunications Customer Service Evaluation Benchmark for Large Language Models
-# 中国运营商客服大语言模型测评基准
+# 中国电信客服大语言模型测评基准
  
 - [English](./README.en)/- [中文](./README.md)
 
