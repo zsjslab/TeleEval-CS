@@ -1,7 +1,5 @@
  A Chinese Operator Customer Service Large Language Models Benchmark
 # 中国运营商客服大语言模型测评基准
-
- Language / 语言
  
 - [English](./README.en)/- [中文](./README.md)
 
