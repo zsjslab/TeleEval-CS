@@ -1,4 +1,4 @@
- A Chinese Operator Customer Service Large Language Models Benchmark
+A Chinese Telecommunications Customer Service Evaluation Benchmark for Large Language Models
 # 中国运营商客服大语言模型测评基准
  
 - [English](./README.en)/- [中文](./README.md)
